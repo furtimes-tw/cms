@@ -13,11 +13,11 @@ export const Posts: CollectionConfig = {
     group: '內容管理',
   },
   access: {
-    admin: isLoggedIn,
+    admin: ({ req: { user } }) => Boolean(user),
     read: () => true,
-    create: canManageContent,
-    update: canManageContent,
-    delete: isAdmin,
+    create: ({ req: { user } }) => Boolean(user),
+    update: ({ req: { user } }) => Boolean(user),
+    delete: ({ req: { user } }) => user?.role === 'admin',
   },
   fields: [
     {
