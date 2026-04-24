@@ -137,7 +137,7 @@ export interface Post {
    */
   slug: string;
   /**
-   * 文章主要內容。
+   * 文章主要內容，可插入媒體圖片。
    */
   content: {
     root: {
@@ -180,6 +180,14 @@ export interface Media {
    * 提供圖片描述，利於無障礙與 SEO。
    */
   alt?: string | null;
+  /**
+   * 顯示在圖片下方的說明文字。
+   */
+  caption?: string | null;
+  /**
+   * 提供圖片的來源或攝影者資訊，尊重版權並增加內容可信度。
+   */
+  credit?: string | null;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -445,6 +453,8 @@ export interface UsersSelect<T extends boolean = true> {
  */
 export interface MediaSelect<T extends boolean = true> {
   alt?: T;
+  caption?: T;
+  credit?: T;
   updatedAt?: T;
   createdAt?: T;
   url?: T;

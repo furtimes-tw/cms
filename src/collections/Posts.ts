@@ -1,5 +1,9 @@
 import type { CollectionConfig } from 'payload'
-import { isAdmin, isLoggedIn, canManageContent } from '../access/role'
+import {
+  lexicalEditor,
+  UploadFeature,
+} from '@payloadcms/richtext-lexical'
+// import { isAdmin, isLoggedIn, canManageContent } from '../access/role'
 
 export const Posts: CollectionConfig = {
   slug: 'posts',
@@ -41,8 +45,9 @@ export const Posts: CollectionConfig = {
       label: '內文',
       type: 'richText',
       required: true,
+      editor: lexicalEditor(),
       admin: {
-        description: '文章主要內容。',
+      description: '文章主要內容，可插入媒體圖片。',
       },
     },
     {
