@@ -9,7 +9,7 @@ export const Announcements: CollectionConfig = {
   },
   admin: {
     useAsTitle: 'title',
-    defaultColumns: ['title', 'pinned', 'publishedAt', 'updatedAt'],
+    defaultColumns: ['title', 'slug', 'pinned', 'publishedAt', 'updatedAt'],
     group: '內容管理',
   },
   access: {
@@ -25,6 +25,16 @@ export const Announcements: CollectionConfig = {
       label: '公告標題',
       type: 'text',
       required: true,
+    },
+    {
+      name: 'slug',
+      label: 'Slug',
+      type: 'text',
+      required: true,
+      unique: true,
+      admin: {
+        description: '公開網址用，請使用英文與短橫線，例如：my-announcement',
+      },
     },
     {
       name: 'body',

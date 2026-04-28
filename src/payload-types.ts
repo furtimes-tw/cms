@@ -221,6 +221,10 @@ export interface Tag {
 export interface Announcement {
   id: number;
   title: string;
+  /**
+   * 公開網址用，請使用英文與短橫線，例如：my-announcement
+   */
+  slug: string;
   body: {
     root: {
       type: string;
@@ -395,6 +399,7 @@ export interface PostsSelect<T extends boolean = true> {
  */
 export interface AnnouncementsSelect<T extends boolean = true> {
   title?: T;
+  slug?: T;
   body?: T;
   pinned?: T;
   publishedAt?: T;
