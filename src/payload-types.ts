@@ -252,11 +252,18 @@ export interface Announcement {
 export interface Sponsor {
   id: number;
   name: string;
+  sponsorType: 'company' | 'individual';
+  tier: 'primary' | 'secondary' | 'standard' | 'supporter' | 'special';
+  /**
+   * 勾選後可顯示於首頁贊助區。
+   */
+  featured?: boolean | null;
   logo?: (number | null) | Media;
   /**
    * 可填官方網站或活動頁面連結。
    */
   link?: string | null;
+  description?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -412,8 +419,12 @@ export interface AnnouncementsSelect<T extends boolean = true> {
  */
 export interface SponsorsSelect<T extends boolean = true> {
   name?: T;
+  sponsorType?: T;
+  tier?: T;
+  featured?: T;
   logo?: T;
   link?: T;
+  description?: T;
   updatedAt?: T;
   createdAt?: T;
 }

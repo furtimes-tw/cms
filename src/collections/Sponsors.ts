@@ -4,12 +4,12 @@ import { isAdmin, isLoggedIn, canManageContent } from '../access/role'
 export const Sponsors: CollectionConfig = {
   slug: 'sponsors',
   labels: {
-    singular: '贊助商',
-    plural: '贊助商',
+    singular: '贊助夥伴',
+    plural: '贊助夥伴',
   },
   admin: {
     useAsTitle: 'name',
-    defaultColumns: ['name', 'updatedAt'],
+    defaultColumns: ['name', 'sponsorType', 'class', 'featured', 'updatedAt'],
     group: '內容管理',
   },
   access: {
@@ -27,6 +27,40 @@ export const Sponsors: CollectionConfig = {
       required: true,
     },
     {
+      name: 'sponsorType',
+      label: '贊助類型',
+      type: 'select',
+      required: true,
+      defaultValue: 'company',
+      options: [
+        { label: '公司/組織', value: 'company' },
+        { label: '個人', value: 'individual' },
+       ],
+    },
+    {
+      name: 'tier',
+      label: '贊助級別',
+      type: 'select',
+      required: true,
+      defaultValue: 'supporter',
+      options: [
+        { label: '主要贊助', value: 'primary' },
+        { label: '協力贊助', value: 'secondary' },
+        { label: '一般贊助', value: 'standard' },
+        { label: '個人贊助', value: 'supporter' },
+        { label: '特別贊助', value: 'special' },
+      ],
+    },
+    {
+      name: 'featured',
+      label: '首頁顯示',
+      type: 'checkbox',
+      defaultValue: false,
+      admin: {
+        description: '勾選後可顯示於首頁贊助區。',
+      },
+    },
+    {
       name: 'logo',
       label: 'Logo',
       type: 'upload',
@@ -40,18 +74,11 @@ export const Sponsors: CollectionConfig = {
         description: '可填官方網站或活動頁面連結。',
       },
     },
-    // {
-    //   name: 'tier',
-    //   label: '贊助等級',
-    //   type: 'select',
-    //   required: true,
-    //   options: [
-    //     { label: '金級', value: 'Gold' },
-    //     { label: '銀級', value: 'Silver' },
-    //     { label: '銅級', value: 'Bronze' },
-    //     { label: '特別', value: 'Special' },
-    //   ],
-    // },
+    {
+      name: 'description',
+      label: '簡介',
+      type: 'textarea',
+    },
   ],
   timestamps: true,
 }
