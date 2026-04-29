@@ -9,7 +9,7 @@ export const Sponsors: CollectionConfig = {
   },
   admin: {
     useAsTitle: 'name',
-    defaultColumns: ['name', 'sponsorType', 'class', 'featured', 'updatedAt'],
+    defaultColumns: ['name', 'sponsorType', 'class', 'featured', 'sortOrder', 'updatedAt'],
     group: '內容管理',
   },
   access: {
@@ -58,6 +58,15 @@ export const Sponsors: CollectionConfig = {
       defaultValue: false,
       admin: {
         description: '勾選後可顯示於首頁贊助區。',
+      },
+    },
+    {
+      name: 'sortOrder',
+      label: '排序',
+      type: 'number',
+      defaultValue: 100,
+      admin: {
+        description: '數字越小越前面，例如 10、20、30。',
       },
     },
     {

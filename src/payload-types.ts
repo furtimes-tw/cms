@@ -258,6 +258,10 @@ export interface Sponsor {
    * 勾選後可顯示於首頁贊助區。
    */
   featured?: boolean | null;
+  /**
+   * 數字越小越前面，例如 10、20、30。
+   */
+  sortOrder?: number | null;
   logo?: (number | null) | Media;
   /**
    * 可填官方網站或活動頁面連結。
@@ -422,6 +426,7 @@ export interface SponsorsSelect<T extends boolean = true> {
   sponsorType?: T;
   tier?: T;
   featured?: T;
+  sortOrder?: T;
   logo?: T;
   link?: T;
   description?: T;
