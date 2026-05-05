@@ -13,13 +13,14 @@ export const Users: CollectionConfig = {
     defaultColumns: ['username', 'email', 'role', 'blocked'],
     group: '系統管理',
   },
-  // access: {
-  //   admin: isLoggedIn,
-  //   read: isLoggedIn,
-  //   create: isAdmin,
-  //   update: isAdmin,
-  //   delete: isAdmin,
-  // },
+  access: {
+    admin: ({ req: { user } }) => Boolean(user),
+
+    read: ({ req: { user } }) => user?.role === 'admin',
+    create: ({ req: { user } }) => user?.role === 'admin',
+    update: ({ req: { user } }) => user?.role === 'admin',
+    delete: ({ req: { user } }) => user?.role === 'admin',
+  },
   fields: [
     {
       name: 'username',

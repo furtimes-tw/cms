@@ -18,7 +18,16 @@ export const Posts: CollectionConfig = {
   },
   access: {
     admin: ({ req: { user } }) => Boolean(user),
-    read: () => true,
+    
+    read: ({ req }) => {
+      if (req.user) return true
+
+      return {
+        publishedAt: {
+          lte: new Date().toISOString(),
+        },
+      }
+    },
     create: ({ req: { user } }) => Boolean(user),
     update: ({ req: { user } }) => Boolean(user),
     delete: ({ req: { user } }) => user?.role === 'admin',

@@ -13,11 +13,21 @@ export const Announcements: CollectionConfig = {
     group: '內容管理',
   },
   access: {
-    admin: isLoggedIn,
-    read: () => true,
-    create: canManageContent,
-    update: canManageContent,
-    delete: isAdmin,
+    admin: ({ req: { user } }) => Boolean(user),
+
+    read: ({ req }) => {
+      if (req.user) return true
+
+      return {
+        publishedAt: {
+          lte: new Date().toISOString(),
+        },
+      }
+    },
+
+    create: ({ req: { user } }) => Boolean(user),
+    update: ({ req: { user } }) => Boolean(user),
+    delete: ({ req: { user } }) => user?.role === 'admin',
   },
   fields: [
     {

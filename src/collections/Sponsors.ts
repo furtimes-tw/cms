@@ -9,12 +9,20 @@ export const Sponsors: CollectionConfig = {
   },
   admin: {
     useAsTitle: 'name',
-    defaultColumns: ['name', 'sponsorType', 'class', 'featured', 'sortOrder', 'updatedAt'],
+    defaultColumns: ['name', 'sponsorType', 'tier', 'featured', 'isPublic', 'sortOrder', 'updatedAt'],
     group: '內容管理',
   },
   access: {
     admin: isLoggedIn,
-    read: () => true,
+    read: ({ req }) => {
+      if (req.user) return true
+
+      return {
+        isPublic: {
+          equals: true,
+        },
+      }
+    },
     create: canManageContent,
     update: canManageContent,
     delete: isAdmin,
@@ -58,6 +66,15 @@ export const Sponsors: CollectionConfig = {
       defaultValue: false,
       admin: {
         description: '勾選後可顯示於首頁贊助區。',
+      },
+    },
+    {
+      name: 'isPublic',
+      label: '公開顯示',
+      type: 'checkbox',
+      defaultValue: true,
+      admin: {
+        description: '取消勾選後將不會在前端顯示，但仍可在後台管理。',
       },
     },
     {

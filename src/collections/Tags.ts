@@ -15,9 +15,9 @@ export const Tags: CollectionConfig = {
   access: {
     admin: isLoggedIn,
     read: () => true,
-    create: canManageContent,
-    update: canManageContent,
-    delete: isAdmin,
+    create: ({ req: { user } }) => Boolean(user),
+    update: ({ req: { user } }) => Boolean(user),
+    delete: ({ req: { user } }) => user?.role === 'admin',
   },
   fields: [
     {

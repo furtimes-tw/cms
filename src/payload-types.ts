@@ -259,6 +259,10 @@ export interface Sponsor {
    */
   featured?: boolean | null;
   /**
+   * 取消勾選後將不會在前端顯示，但仍可在後台管理。
+   */
+  isPublic?: boolean | null;
+  /**
    * 數字越小越前面，例如 10、20、30。
    */
   sortOrder?: number | null;
@@ -426,6 +430,7 @@ export interface SponsorsSelect<T extends boolean = true> {
   sponsorType?: T;
   tier?: T;
   featured?: T;
+  isPublic?: T;
   sortOrder?: T;
   logo?: T;
   link?: T;
