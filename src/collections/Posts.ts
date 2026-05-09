@@ -13,12 +13,12 @@ export const Posts: CollectionConfig = {
   },
   admin: {
     useAsTitle: 'title',
-    defaultColumns: ['title', 'category', 'publishedAt', 'updatedAt'],
+    defaultColumns: ['title', 'category', 'featured', 'featuredOrder', 'publishedAt', 'updatedAt'],
     group: '內容管理',
   },
   access: {
     admin: ({ req: { user } }) => Boolean(user),
-    
+
     read: ({ req }) => {
       if (req.user) return true
 
@@ -82,6 +82,25 @@ export const Posts: CollectionConfig = {
       ],
       admin: {
         description: '請選擇文章的主要類型。',
+      },
+    },
+    {
+      name: 'featured',
+      label: '首頁推薦',
+      type: 'checkbox',
+      defaultValue: false,
+      admin: {
+        description: '勾選後，文章將在首頁推薦區顯示。',
+      },
+    },
+    {
+      name: 'featuredOrder',
+      label: '推薦排序',
+      type: 'number',
+      defaultValue: 100,
+      admin: {
+        description: '數字越小，推薦位置越前。僅對已勾選首頁推薦的文章有效。',
+        condition: (_, siblingData) => siblingData.featured === true,
       },
     },
     {
