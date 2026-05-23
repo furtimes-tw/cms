@@ -163,6 +163,14 @@ export interface Post {
    */
   category: 'Newsflash' | 'Report' | 'Sponsor' | 'Column' | 'Interview';
   /**
+   * 勾選後，文章將在首頁推薦區顯示。
+   */
+  featured?: boolean | null;
+  /**
+   * 數字越小，推薦位置越前。僅對已勾選首頁推薦的文章有效。
+   */
+  featuredOrder?: number | null;
+  /**
    * 可選多個，用於搜尋與分類輔助。
    */
   tags?: (number | Tag)[] | null;
@@ -403,6 +411,8 @@ export interface PostsSelect<T extends boolean = true> {
   content?: T;
   thumbnail?: T;
   category?: T;
+  featured?: T;
+  featuredOrder?: T;
   tags?: T;
   publishedAt?: T;
   updatedAt?: T;
