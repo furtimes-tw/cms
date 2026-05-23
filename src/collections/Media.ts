@@ -8,7 +8,6 @@ export const Media: CollectionConfig = {
     plural: '媒體',
   },
   upload: {
-    staticDir: 'media',
     mimeTypes: ['image/*'],
   },
   admin: {
