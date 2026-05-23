@@ -13,7 +13,7 @@ export const Sponsors: CollectionConfig = {
     group: '內容管理',
   },
   access: {
-    admin: isLoggedIn,
+    admin: ({ req: { user } }) => Boolean(user),
     read: ({ req }) => {
       if (req.user) return true
 

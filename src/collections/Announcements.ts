@@ -20,7 +20,7 @@ export const Announcements: CollectionConfig = {
 
       return {
         publishedAt: {
-          lte: new Date().toISOString(),
+          less_than_equal: new Date().toISOString(),
         },
       }
     },

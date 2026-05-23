@@ -16,6 +16,12 @@
 /.next/
 /out/
 
+# database
+*.db
+*.sqlite
+*.sqlite3
+cms.db
+
 # production
 /build
 
@@ -29,6 +35,8 @@ yarn-debug.log*
 yarn-error.log*
 
 # local env files
+.env
+.env.local
 .env*.local
 
 # vercel
@@ -38,10 +46,9 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-.env
-
 /media
 /_legacy
+/_legacy/*
 
 # Playwright
 node_modules/
