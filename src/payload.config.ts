@@ -25,8 +25,17 @@ const allowedDevOrigins = [
 export default buildConfig({
   admin: {
     user: Users.slug,
+    meta: {
+      titleSuffix: '- FurTimes CMS',
+      description: '獸時報內容管理系統',
+    },
     importMap: {
       baseDir: path.resolve(dirname),
+    },
+    components: {
+      beforeDashboard: [
+        '@/components/admin/FurTimesDashboard',
+      ],
     },
   },
 
