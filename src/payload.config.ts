@@ -45,9 +45,9 @@ export default buildConfig({
   i18n: {
     supportedLocales: {
       en,
-      zhTw,
+      'zh-TW': zhTw,
     },
-    fallbackLanguage: 'zhTw',
+    fallbackLanguage: 'zh-TW',
   },
 
   collections: [Posts, Announcements, Sponsors, Tags, Users, Media],
