@@ -6,6 +6,9 @@ import { buildConfig } from 'payload'
 import { fileURLToPath } from 'url'
 import sharp from 'sharp'
 
+import { en } from '@payloadcms/translations/languages/en'
+import { zhTw } from '@payloadcms/translations/languages/zhTw'
+
 import { Posts } from './collections/Posts'
 import { Announcements } from './collections/Announcements'
 import { Sponsors } from './collections/Sponsors'
@@ -37,6 +40,14 @@ export default buildConfig({
         '@/components/admin/FurTimesDashboard',
       ],
     },
+  },
+
+  i18n: {
+    supportedLocales: {
+      en,
+      zhTw,
+    },
+    fallbackLanguage: 'zhTw',
   },
 
   collections: [Posts, Announcements, Sponsors, Tags, Users, Media],
