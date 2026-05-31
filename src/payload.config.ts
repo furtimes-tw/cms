@@ -43,7 +43,7 @@ export default buildConfig({
   },
 
   i18n: {
-    supportedLocales: {
+    supportedLanguages: {
       en,
       'zh-TW': zhTw,
     },
