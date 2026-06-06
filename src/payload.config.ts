@@ -1,6 +1,7 @@
 import { postgresAdapter } from '@payloadcms/db-postgres'
 import { s3Storage } from '@payloadcms/storage-s3'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
+import { resendAdapter } from '@payloadcms/email-resend'
 import path from 'path'
 import { buildConfig } from 'payload'
 import { fileURLToPath } from 'url'
@@ -55,6 +56,14 @@ export default buildConfig({
 
   secret: process.env.PAYLOAD_SECRET || '',
   serverURL: process.env.NEXT_PUBLIC_SERVER_URL,
+
+  email: resendAdapter({
+    defaultFromAddress:
+      process.env.EMAIL_FROM_ADDRESS || 'noreply@furtimes.tw',
+    defaultFromName:
+      process.env.EMAIL_FROM_NAME || '獸時報 CMS',
+    apiKey: process.env.RESEND_API_KEY || '',
+  }),
 
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
